@@ -2,7 +2,6 @@ import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from "react";
 function myPosts(props) {
-console.log(props);
   let newPostElement = React.createRef();
   let postElements = props.posts.posts.map((post) => (
     <Post message={post.textPost} likes={post.likesCount} />
