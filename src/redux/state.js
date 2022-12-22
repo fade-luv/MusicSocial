@@ -1,4 +1,5 @@
 let store = {
+  
   _state: {
     profilePage: {
       posts: [
@@ -26,33 +27,46 @@ let store = {
       ],
     },
   },
+  _subscriber(observer) {
+    this._rerenderEntireTree = observer;
+  },
+
   getState() {
     return this._state;
   },
-  rerenderEntireTree() {
-    console.log("state changed");
-  },
 
-  addPost(postMessage) {
-    
-    let newPost = {
-      id: 5,
-      textPost: postMessage,
-      likesCount: 0,
-    };
-    this._state.profilePage.posts.push(newPost);
-    this._rerenderEntireTree(this._state);
-  },
-
-  refreshPostText(newText) {
-    this._state.profilePage.newPostText = newText;
-    this._rerenderEntireTree(this._state);
-  },
-
-  subscriber(observer) {
-    this._rerenderEntireTree = observer;
+  dispatch(action) {
+    if (action.type === "ADD-POST") {
+      let newPost = {
+        id: 5,
+        textPost: action.postMessage,
+        likesCount: 0,
+      };
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = " ";
+      this._rerenderEntireTree(this._state);
+    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+      this._state.profilePage.newPostText = action.newText;
+      this._rerenderEntireTree(this._state);
+    }
   },
 };
+
+
+
+ export function addPostActionCreator(PostText) {
+   return {
+     type: "ADD-POST",
+     postMessage: PostText,
+   };
+ }
+
+ export function onPostChangeActionCreator(text) {
+   return {
+     type: "UPDATE-NEW-POST-TEXT",
+     newText: text,
+   };
+ }
 
 export default store;
 window._store = store;

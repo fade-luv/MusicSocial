@@ -12,13 +12,13 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
  function rerenderEntireTree() {
   root.render(
     <React.StrictMode>
-      <App state={store._state} addPost={store.addPost.bind(store)} refreshPostText={store.refreshPostText.bind(store)} />
+      <App state={store._state} dispatch={store.dispatch.bind(store) } />
     </React.StrictMode>
   );
 }
 
 rerenderEntireTree(store.getState());
-store.subscriber(rerenderEntireTree);
+store._subscriber(rerenderEntireTree);
 reportWebVitals();
 
 
