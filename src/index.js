@@ -4,25 +4,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
-
-
+import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
- function rerenderEntireTree() {
+let rerenderEntireTree = () =>
   root.render(
-    <React.StrictMode>
-      <App state={store._state} dispatch={store.dispatch.bind(store) } />
-    </React.StrictMode>
+    <BrowserRouter>
+      <App state={store._state} dispatch={store.dispatch.bind(store)} />
+    </BrowserRouter>
   );
-}
 
 rerenderEntireTree(store.getState());
 store._subscriber(rerenderEntireTree);
 reportWebVitals();
-
-
-
-
-
-

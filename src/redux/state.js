@@ -53,20 +53,17 @@ let store = {
 };
 
 
+export let addPostActionCreator = PostText => ({
+  type: "ADD-POST",
+  postMessage: PostText,
+});
 
- export function addPostActionCreator(PostText) {
-   return {
-     type: "ADD-POST",
-     postMessage: PostText,
-   };
- }
 
- export function onPostChangeActionCreator(text) {
-   return {
-     type: "UPDATE-NEW-POST-TEXT",
-     newText: text,
-   };
- }
+export let onPostChangeActionCreator = text => ({
+  type: "UPDATE-NEW-POST-TEXT",
+  newText: text,
+});
+
 
 export default store;
 window._store = store;
