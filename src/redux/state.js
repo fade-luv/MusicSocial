@@ -25,6 +25,7 @@ let store = {
         { id: 3, textMessage: "Thanks" },
         { id: 4, textMessage: "Goodbye" },
       ],
+      newMessageText: "Ваше сообщение",
     },
   },
   _subscriber(observer) {
@@ -36,7 +37,9 @@ let store = {
   },
 
   dispatch(action) {
+
     if (action.type === "ADD-POST") {
+     
       let newPost = {
         id: 5,
         textPost: action.postMessage,
@@ -47,7 +50,16 @@ let store = {
       this._rerenderEntireTree(this._state);
     } else if (action.type === "UPDATE-NEW-POST-TEXT") {
       this._state.profilePage.newPostText = action.newText;
+      this._rerenderEntireTree(this._state)
+    }else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
+      this._state.dialogsPage.newMessageText = action.body;
       this._rerenderEntireTree(this._state);
+    }else if (action.type === "SEND-NEW-MESSAGE"){
+      this._state.dialogsPage.newMessageText = action.newText;
+      let body = this._state.dialogsPage.newMessageText;
+      this._state.dialogsPage.newMessageText = ' ';
+      this._state.dialogsPage.messages.push({ id: 6, textMessage: body });
+      this._rerenderEntireTree(this._state)
     }
   },
 };
@@ -61,6 +73,15 @@ export let addPostActionCreator = PostText => ({
 
 export let onPostChangeActionCreator = text => ({
   type: "UPDATE-NEW-POST-TEXT",
+  newText: text,
+});
+
+export let updateNewMessageCreator = (text) => ({
+  type: "UPDATE-NEW-MESSAGE-TEXT",
+  newText: text,
+});
+export let sendNewMessageCreator = (text) => ({
+  type: "SEND-NEW-MESSAGE",
   newText: text,
 });
 

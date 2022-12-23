@@ -6,7 +6,6 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import { Routes, Route } from "react-router-dom";
 
 let App = props => 
-    
       <div className="App">
         <div className="app-wrapper">
           <Header />
@@ -24,7 +23,7 @@ let App = props =>
               />
               <Route
                 path="/dialogs/*"
-                element={<Dialogs dialogs={props.state.dialogsPage} />}
+                element={<Dialogs  store={props} />}
               />
             </Routes>
           </div>
