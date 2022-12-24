@@ -9,7 +9,7 @@ function rerenderEntireTree(state) {
 
   root.render(
     <BrowserRouter>
-      <App state={state} dispatch={store.dispatch.bind(state)}/>
+      <App store={store} dispatch={store.dispatch.bind(state)}/>
     </BrowserRouter>
   );
 }
