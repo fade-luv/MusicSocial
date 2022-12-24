@@ -2,7 +2,7 @@ import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import { updateNewMessageCreator,sendNewMessageCreator } from "../../redux/state";
+import { updateNewMessageCreator,sendNewMessageCreator } from "../../redux/dialogs-reducer";
 function Dialogs(props) {
   let newMessageElement = React.createRef();
    
