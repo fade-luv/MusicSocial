@@ -3,11 +3,10 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
 function Dialogs(props) {
-console.log(props);
-  let state = props.store.getState();
-  let dialogs = state.dialogsPage.dialogs
-  let messages = state.dialogsPage.messages;
-  let newMessageText = state.dialogsPage.newMessageText;
+
+  let dialogs = props.dialogsPage.dialogs
+  let messages = props.dialogsPage.messages;
+  let newMessageText = props.dialogsPage.newMessageText;
   let newMessageElement = React.createRef();
 
   let dialogsElements = dialogs.map((dialog) => (
